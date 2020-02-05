@@ -1,0 +1,38 @@
+﻿@model _20GRPED.MVC1.A03.MvcStrings.Models.StringComparisonModel
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Index</h1>
+
+<h4>StringComparisonModel</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Index">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="Left" class="control-label"></label>
+                <input asp-for="Left" class="form-control" />
+                <span asp-validation-for="Left" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Right" class="control-label"></label>
+                <input asp-for="Right" class="form-control" />
+                <span asp-validation-for="Right" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Compare!" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">New Comparison!</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
