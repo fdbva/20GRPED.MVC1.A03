@@ -16,6 +16,7 @@ namespace _20GRPED.MVC1.A03.MvcStrings.Controllers
 
         public IActionResult Compare(StringComparisonModel stringComparisonModel)
         {
+            ViewBag.Title = "Compare";
             var result = stringComparisonModel.Left == stringComparisonModel.Right;
 
             stringComparisonModel.Result = result;
@@ -25,6 +26,7 @@ namespace _20GRPED.MVC1.A03.MvcStrings.Controllers
 
         public IActionResult CompareIgnoreCase(StringComparisonModel stringComparisonModel)
         {
+            ViewBag.Title = "CompareIgnoreCase";
             var result =
                 string.Equals(stringComparisonModel.Left, stringComparisonModel.Right, StringComparison.OrdinalIgnoreCase);
 
