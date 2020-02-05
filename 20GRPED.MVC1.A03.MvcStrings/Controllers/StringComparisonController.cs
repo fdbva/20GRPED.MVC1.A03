@@ -22,5 +22,15 @@ namespace _20GRPED.MVC1.A03.MvcStrings.Controllers
             
             return View("Result", stringComparisonModel);
         }
+
+        public IActionResult CompareIgnoreCase(StringComparisonModel stringComparisonModel)
+        {
+            var result =
+                string.Equals(stringComparisonModel.Left, stringComparisonModel.Right, StringComparison.OrdinalIgnoreCase);
+
+            stringComparisonModel.Result = result;
+
+            return View("Result", stringComparisonModel);
+        }
     }
 }
