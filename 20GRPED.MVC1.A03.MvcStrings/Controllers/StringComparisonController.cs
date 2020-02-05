@@ -3,33 +3,45 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using _20GRPED.MVC1.A03.MvcStrings.Models;
+using _20GRPED.MVC1.A03.MvcStrings.Services;
 using Microsoft.AspNetCore.Mvc;
 
 namespace _20GRPED.MVC1.A03.MvcStrings.Controllers
 {
     public class StringComparisonController : Controller
     {
+        private readonly StringComparisonService _stringComparisonService;
+
+        public StringComparisonController(
+            StringComparisonService stringComparisonService)
+        {
+            _stringComparisonService = stringComparisonService;
+        }
+
         public IActionResult Index()
         {
             return View();
         }
 
-        public IActionResult Compare(StringComparisonModel stringComparisonModel)
+        [HttpGet]
+        public IActionResult Compare(
+            StringComparisonModel stringComparisonModel)
         {
             ViewBag.Title = "Compare";
-            var result = stringComparisonModel.Left == stringComparisonModel.Right;
 
+            var result = _stringComparisonService.Compare(stringComparisonModel);
             stringComparisonModel.Result = result;
             
             return View("Result", stringComparisonModel);
         }
 
-        public IActionResult CompareIgnoreCase(StringComparisonModel stringComparisonModel)
+        [HttpPost]
+        public IActionResult CompareIgnoreCase(
+            StringComparisonModel stringComparisonModel)
         {
             ViewBag.Title = "CompareIgnoreCase";
-            var result =
-                string.Equals(stringComparisonModel.Left, stringComparisonModel.Right, StringComparison.OrdinalIgnoreCase);
 
+            var result = _stringComparisonService.CompareIgnoreCase(stringComparisonModel);
             stringComparisonModel.Result = result;
 
             return View("Result", stringComparisonModel);
